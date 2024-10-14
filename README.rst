@@ -1,6 +1,6 @@
 Odoo REST API
 =============
-* TEST This module allow us to connect to database with REST API requests
+* This module allow us to connect to database with REST API requests
 
 Configuration
 -----------
