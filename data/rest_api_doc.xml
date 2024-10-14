@@ -1,0 +1,1709 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data noupdate="0">
+
+        <record id="sale_order_rest_api" model="connection.api">
+            <field name="model_id" ref="sale.model_sale_order"/>
+            <field name="is_get">True</field>
+            <field name="is_post">True</field>
+            <field name="is_put">True</field>
+            <field name="is_delete">True</field>
+
+            <field name="input_param_get">
+                <![CDATA[
+                <div style="max-width: auto; margin: 20px auto; background: #fff; padding: 20px; border-radius: 5px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);">
+                    <div style="display: flex; align-items: center; margin-bottom: 20px;">
+                        <div style="font-weight: bold; padding: 5px 10px; color: white; border-radius: 3px; margin-right: 10px; background-color: #61affe;">GET ALL Sale Order</div>
+                        <div style="font-size: 18px;">/list_sale_order</div>
+                    </div>
+                    <div style="display: flex; align-items: center; margin-bottom: 20px;">
+                        <div style="font-weight: bold; padding: 5px 10px; color: white; border-radius: 3px; margin-right: 10px; background-color: #61affe;">GET UNIQUE Sale Order</div>
+                        <div style="font-size: 18px;">/list_sale_order/{id}</div>
+                    </div>
+                    <div style="margin-bottom: 20px;">
+                        <h3 style="font-size: 16px; color: #333; margin-bottom: 10px;">Parameters</h3>
+                        <table style="width: 100%; border-collapse: collapse; margin-bottom: 10px;">
+                            <tr>
+                                <th style="border: 1px solid #ddd; padding: 8px; text-align: left; background-color: #f2f2f2;">Param</th>
+                                <th style="border: 1px solid #ddd; padding: 8px; text-align: left; background-color: #f2f2f2;">Description</th>
+                            </tr>
+                            <tr>
+                                <td style="border: 1px solid #ddd; padding: 8px; text-align: left;">ID of Sale Order</td>
+                                <td style="border: 1px solid #ddd; padding: 8px; text-align: left;"><span style="color: red;">*</span> ID (Require for <span style="font-weight: bold; padding: 5px 10px; color: white; border-radius: 3px; background-color: #61affe;">GET UNIQUE Sale Order</span>) and put ID after the URL /list_sale_order/{here}</td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div style="margin-bottom: 20px;">
+                        <h3 style="font-size: 16px; color: #333; margin-bottom: 10px;">Responses</h3>
+                        <div style="display: flex; align-items: center; margin-bottom: 10px;">
+                            <span style="font-weight: bold; padding: 5px 10px; color: white; border-radius: 3px; margin-right: 10px; background-color: #28a745;">200</span>
+                            <span style="font-size: 14px; color: #333;">Success</span>
+                        </div>
+                        <div style="margin-bottom: 10px;">
+                            <label for="media-type">Media type: application/json</label>
+                        </div>
+                        <div style="background-color: #f4f4f4; padding: 10px; border-radius: 5px; font-family: monospace;">
+                            <pre style="margin: 0; overflow-x: auto;">
+{
+    "result": {
+        "id": 56,
+        "name": "S00056",
+        "create_date": "2024-07-30 10:41:16",
+        "modify_date": "2024-07-30 10:41:41",
+        "date_order": "2024-07-30 10:41:19",
+        "partner": {
+            "id": 10,
+            "name": "Deco Addict"
+        },
+        "state": "sale",
+        "amount_untaxed": 580.0,
+        "amount_tax": 87.0,
+        "amount_total": 667.0,
+        "note": '',
+        "oder_line": [
+            {
+                "product_id": 134,
+                "name": "[RENT001] Projector\n07/25/2024 12:41:19 to 07/29/2024 12:41:19",
+                "product_uom_qty": 3.0,
+                "price_unit": 150.0,
+                "price_subtotal": 450.0
+            },
+            {
+                "product_id": 5,
+                "name": "[FURN_7777] Office Chair",
+                "product_uom_qty": 2.0,
+                "price_unit": 65.0,
+                "price_subtotal": 130.0
+            }
+        ]
+    }
+}
+                            </pre>
+                        </div>
+                    </div>
+                    <!-- 400 Error -->
+                    <div style="display: flex; align-items: center; margin-bottom: 10px;">
+                        <span style="font-weight: bold; padding: 5px 10px; color: white; border-radius: 3px; margin-right: 10px; background-color: #dc3545;">400</span>
+                        <span style="font-size: 14px; color: #333;">One of the given parameters is not valid</span>
+                    </div>
+
+                    <!-- 401 Error -->
+                    <div style="display: flex; align-items: center; margin-bottom: 10px;">
+                        <span style="font-weight: bold; padding: 5px 10px; color: white; border-radius: 3px; margin-right: 10px; background-color: #dc3545;">401</span>
+                        <span style="font-size: 14px; color: #333;">The user is not authorized. Authentication is required</span>
+                    </div>
+
+                    <!-- 403 Error -->
+                    <div style="display: flex; align-items: center; margin-bottom: 10px;">
+                        <span style="font-weight: bold; padding: 5px 10px; color: white; border-radius: 3px; margin-right: 10px; background-color: #dc3545;">403</span>
+                        <span style="font-size: 14px; color: #333;">You don't have the permission to access the requested resource</span>
+                    </div>
+
+                    <!-- 404 Error -->
+                    <div style="display: flex; align-items: center; margin-bottom: 10px;">
+                        <span style="font-weight: bold; padding: 5px 10px; color: white; border-radius: 3px; margin-right: 10px; background-color: #dc3545;">404</span>
+                        <span style="font-size: 14px; color: #333;">Requested resource not found</span>
+                    </div>
+                </div>
+            ]]>
+            </field>
+
+            <field name="input_param_post">
+                <![CDATA[
+                <div style="max-width: auto; margin: 20px auto; background: #fff; padding: 20px; border-radius: 5px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);">
+                    <div style="display: flex; align-items: center; margin-bottom: 20px;">
+                        <div style="font-weight: bold; padding: 5px 10px; color: white; border-radius: 3px; margin-right: 10px; background-color: #61affe;">POST</div>
+                        <div style="font-size: 18px;">/create_sale_order</div>
+                    </div>
+                    <div style="display: flex; align-items: center; margin-bottom: 20px;">
+                        <div style="font-weight: bold; padding: 5px 10px; color: white; border-radius: 3px; margin-right: 10px; background-color: #61affe;">POST Sale Order With Line</div>
+                        <div style="font-size: 18px;">/create_sale_order_with_line</div>
+                    </div>
+                    <div style="margin-bottom: 20px;">
+                        <h3 style="font-size: 16px; color: #333; margin-bottom: 10px;">Parameters</h3>
+                        <table style="width: 100%; border-collapse: collapse; margin-bottom: 10px;">
+                            <tr>
+                                <th style="border: 1px solid #ddd; padding: 8px; text-align: left; background-color: #f2f2f2;">Param</th>
+                                <th style="border: 1px solid #ddd; padding: 8px; text-align: left; background-color: #f2f2f2;">Description</th>
+                            </tr>
+                            <tr>
+                                <td style="border: 1px solid #ddd; padding: 8px; text-align: left;"><span style="color: red;">*</span> ID of Customer</td>
+                                <td style="border: 1px solid #ddd; padding: 8px; text-align: left;"> ID for search Customer from Odoo Side and create Sale Order</td>
+                            </tr>
+                            <tr>
+                                <td style="border: 1px solid #ddd; padding: 8px; text-align: left;"><span style="color: red;">*</span> Data of product lines</td>
+                                <td style="border: 1px solid #ddd; padding: 8px; text-align: left;"> Require for <span style="font-weight: bold; padding: 5px 10px; color: white; border-radius: 3px; margin-right: 10px; background-color: #61affe;">POST Sale Order With Line</span> {"order_line": [{
+                                        "product_id": 1,
+                                        "product_uom_qty": 2,
+                                        "price_unit": 10000
+                                    }]}</td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div style="margin-bottom: 20px;">
+                        <h3 style="font-size: 16px; color: #333; margin-bottom: 10px;">Example Request</h3>
+                        <div style="background-color: #f4f4f4; padding: 10px; border-radius: 5px; font-family: monospace;">
+                            <pre style="margin: 0; overflow-x: auto;">
+{
+    "partner_id": 10,
+    "order_line":
+    [
+        {
+        "product_id": 64,
+        "product_uom_qty": 2,
+        "price_unit": 10000
+        },
+        {
+        "product_id": 16,
+        "product_uom_qty": 2,
+        "price_unit": 10000
+        }
+    ]
+}
+                            </pre>
+                        </div>
+
+                        <h3 style="font-size: 16px; color: #333; margin-bottom: 10px;">Responses</h3>
+                        <div style="display: flex; align-items: center; margin-bottom: 10px;">
+                            <span style="font-weight: bold; padding: 5px 10px; color: white; border-radius: 3px; margin-right: 10px; background-color: #28a745;">200</span>
+                            <span style="font-size: 14px; color: #333;">Success</span>
+                        </div>
+                        <div style="margin-bottom: 10px;">
+                            <label for="media-type">Media type: application/json</label>
+                        </div>
+                        <div style="background-color: #f4f4f4; padding: 10px; border-radius: 5px; font-family: monospace;">
+                            <pre style="margin: 0; overflow-x: auto;">
+{
+    "result": "Create successfully",
+    "data": {
+        "id": 80,
+        "name": "S00080",
+        "create_date": "2024-08-13 15:04:24",
+        "modify_date": "2024-08-13 15:04:24",
+        "date_order": "2024-08-13 15:04:24",
+        "partner": {
+            "id": 10,
+            "name": "Deco Addict"
+        },
+        "state": "draft",
+        "amount_untaxed": 40000.0,
+        "amount_tax": 6000.0,
+        "amount_total": 46000.0,
+        "note": '',
+        "oder_line": [
+            {
+                "product_id": 64,
+                "name": "[D_0045_GR] Stool (Grey)\nSmall wooden stool",
+                "product_uom_qty": 2.0,
+                "price_unit": 10000.0,
+                "price_subtotal": 20000.0
+            },
+            {
+                "product_id": 16,
+                "name": "[E-COM06] Corner Desk Right Sit",
+                "product_uom_qty": 2.0,
+                "price_unit": 10000.0,
+                "price_subtotal": 20000.0
+            }
+        ]
+    }
+}
+                            </pre>
+                        </div>
+                    </div>
+                    <!-- 400 Error -->
+                    <div style="display: flex; align-items: center; margin-bottom: 10px;">
+                        <span style="font-weight: bold; padding: 5px 10px; color: white; border-radius: 3px; margin-right: 10px; background-color: #dc3545;">400</span>
+                        <span style="font-size: 14px; color: #333;">One of the given parameters is not valid</span>
+                    </div>
+
+                    <!-- 401 Error -->
+                    <div style="display: flex; align-items: center; margin-bottom: 10px;">
+                        <span style="font-weight: bold; padding: 5px 10px; color: white; border-radius: 3px; margin-right: 10px; background-color: #dc3545;">401</span>
+                        <span style="font-size: 14px; color: #333;">The user is not authorized. Authentication is required</span>
+                    </div>
+
+                    <!-- 403 Error -->
+                    <div style="display: flex; align-items: center; margin-bottom: 10px;">
+                        <span style="font-weight: bold; padding: 5px 10px; color: white; border-radius: 3px; margin-right: 10px; background-color: #dc3545;">403</span>
+                        <span style="font-size: 14px; color: #333;">You don't have the permission to access the requested resource</span>
+                    </div>
+
+                    <!-- 404 Error -->
+                    <div style="display: flex; align-items: center; margin-bottom: 10px;">
+                        <span style="font-weight: bold; padding: 5px 10px; color: white; border-radius: 3px; margin-right: 10px; background-color: #dc3545;">404</span>
+                        <span style="font-size: 14px; color: #333;">Requested resource not found</span>
+                    </div>
+                </div>
+            ]]>
+            </field>
+
+            <field name="input_param_modify">
+                <![CDATA[
+                <div style="max-width: auto; margin: 20px auto; background: #fff; padding: 20px; border-radius: 5px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);">
+                    <div style="display: flex; align-items: center; margin-bottom: 20px;">
+                        <div style="font-weight: bold; padding: 5px 10px; color: white; border-radius: 3px; margin-right: 10px; background-color: #61affe;">PUT</div>
+                        <div style="font-size: 18px;">/update_sale_order/{id}</div>
+                    </div>
+                    <div style="margin-bottom: 20px;">
+                        <h3 style="font-size: 16px; color: #333; margin-bottom: 10px;">Parameters</h3>
+                        <table style="width: 100%; border-collapse: collapse; margin-bottom: 10px;">
+                            <tr>
+                                <th style="border: 1px solid #ddd; padding: 8px; text-align: left; background-color: #f2f2f2;">Param</th>
+                                <th style="border: 1px solid #ddd; padding: 8px; text-align: left; background-color: #f2f2f2;">Description</th>
+                            </tr>
+                            <tr>
+                                <td style="border: 1px solid #ddd; padding: 8px; text-align: left;"><span style="color: red;">*</span> ID of Sale Order</td>
+                                <td style="border: 1px solid #ddd; padding: 8px; text-align: left;"> Put ID of Sale Order in the url after /update_sale_order/</td>
+                            </tr>
+                            <tr>
+                                <td style="border: 1px solid #ddd; padding: 8px; text-align: left;"><span style="color: red;">*</span> Data of sale order and product lines</td>
+                                <td style="border: 1px solid #ddd; padding: 8px; text-align: left;"> Input data for modify Sale Order</td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div style="margin-bottom: 20px;">
+                        <h3 style="font-size: 16px; color: #333; margin-bottom: 10px;">Example Request</h3>
+                        <div style="background-color: #f4f4f4; padding: 10px; border-radius: 5px; font-family: monospace;">
+                            <pre style="margin: 0; overflow-x: auto;">
+{
+    "partner_id": 14,
+    "date_order": "2024-08-15 15:04:24",
+    "order_line": [
+        {
+            "product_id": 77,
+            "product_uom_qty": 5,
+            "price_unit": 100.0
+        },
+        {
+            "product_id": 45,
+            "product_uom_qty": 3,
+            "price_unit": 200.0
+        }
+    ],
+    "note": "Please expedite this order.",
+    "state": "sale"
+}
+                            </pre>
+                        </div>
+
+                        <h3 style="font-size: 16px; color: #333; margin-bottom: 10px;">Responses</h3>
+                        <div style="display: flex; align-items: center; margin-bottom: 10px;">
+                            <span style="font-weight: bold; padding: 5px 10px; color: white; border-radius: 3px; margin-right: 10px; background-color: #28a745;">200</span>
+                            <span style="font-size: 14px; color: #333;">Success</span>
+                        </div>
+                        <div style="margin-bottom: 10px;">
+                            <label for="media-type">Media type: application/json</label>
+                        </div>
+                        <div style="background-color: #f4f4f4; padding: 10px; border-radius: 5px; font-family: monospace;">
+                            <pre style="margin: 0; overflow-x: auto;">
+{
+    "result": "Edit successfully",
+    "data": {
+        "id": 71,
+        "name": "S00071",
+        "create_date": "2024-08-13 14:53:23",
+        "modify_date": "2024-08-13 16:00:06",
+        "date_order": "2024-08-15 15:04:24",
+        "partner": {
+            "id": 14,
+            "name": "Azure Interior"
+        },
+        "state": "sale",
+        "amount_untaxed": 1100.0,
+        "amount_tax": 165.0,
+        "amount_total": 1265.0,
+        "note": '',
+        "oder_line": [
+            {
+                "product_id": 77,
+                "name": "[FURN_0004] Letter Tray",
+                "product_uom_qty": 5.0,
+                "price_unit": 100.0,
+                "price_subtotal": 500.0
+            },
+            {
+                "product_id": 45,
+                "name": "[FURN_2333] Table Leg",
+                "product_uom_qty": 3.0,
+                "price_unit": 200.0,
+                "price_subtotal": 600.0
+            }
+        ]
+    }
+}
+                            </pre>
+                        </div>
+                    </div>
+                    <!-- 400 Error -->
+                    <div style="display: flex; align-items: center; margin-bottom: 10px;">
+                        <span style="font-weight: bold; padding: 5px 10px; color: white; border-radius: 3px; margin-right: 10px; background-color: #dc3545;">400</span>
+                        <span style="font-size: 14px; color: #333;">One of the given parameters is not valid</span>
+                    </div>
+
+                    <!-- 401 Error -->
+                    <div style="display: flex; align-items: center; margin-bottom: 10px;">
+                        <span style="font-weight: bold; padding: 5px 10px; color: white; border-radius: 3px; margin-right: 10px; background-color: #dc3545;">401</span>
+                        <span style="font-size: 14px; color: #333;">The user is not authorized. Authentication is required</span>
+                    </div>
+
+                    <!-- 403 Error -->
+                    <div style="display: flex; align-items: center; margin-bottom: 10px;">
+                        <span style="font-weight: bold; padding: 5px 10px; color: white; border-radius: 3px; margin-right: 10px; background-color: #dc3545;">403</span>
+                        <span style="font-size: 14px; color: #333;">You don't have the permission to access the requested resource</span>
+                    </div>
+
+                    <!-- 404 Error -->
+                    <div style="display: flex; align-items: center; margin-bottom: 10px;">
+                        <span style="font-weight: bold; padding: 5px 10px; color: white; border-radius: 3px; margin-right: 10px; background-color: #dc3545;">404</span>
+                        <span style="font-size: 14px; color: #333;">Requested resource not found</span>
+                    </div>
+                </div>
+            ]]>
+            </field>
+
+            <field name="input_param_del">
+                <![CDATA[
+                <div style="max-width: auto; margin: 20px auto; background: #fff; padding: 20px; border-radius: 5px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);">
+                    <div style="display: flex; align-items: center; margin-bottom: 20px;">
+                        <div style="font-weight: bold; padding: 5px 10px; color: white; border-radius: 3px; margin-right: 10px; background-color: #61affe;">DELETE</div>
+                        <div style="font-size: 18px;">/delete_sale_order/{id}</div>
+                    </div>
+                    <div style="margin-bottom: 20px;">
+                        <h3 style="font-size: 16px; color: #333; margin-bottom: 10px;">Parameters</h3>
+                        <table style="width: 100%; border-collapse: collapse; margin-bottom: 10px;">
+                            <tr>
+                                <th style="border: 1px solid #ddd; padding: 8px; text-align: left; background-color: #f2f2f2;">Param</th>
+                                <th style="border: 1px solid #ddd; padding: 8px; text-align: left; background-color: #f2f2f2;">Description</th>
+                            </tr>
+                            <tr>
+                                <td style="border: 1px solid #ddd; padding: 8px; text-align: left;"><span style="color: red;">*</span> ID of Sale Order</td>
+                                <td style="border: 1px solid #ddd; padding: 8px; text-align: left;"> Put ID of Sale Order in the url after /delete_sale_order/</td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div style="margin-bottom: 20px;">
+                        <h3 style="font-size: 16px; color: #333; margin-bottom: 10px;">Responses</h3>
+                        <div style="display: flex; align-items: center; margin-bottom: 10px;">
+                            <span style="font-weight: bold; padding: 5px 10px; color: white; border-radius: 3px; margin-right: 10px; background-color: #28a745;">200</span>
+                            <span style="font-size: 14px; color: #333;">Success</span>
+                        </div>
+                        <div style="margin-bottom: 10px;">
+                            <label for="media-type">Media type: application/json</label>
+                        </div>
+                        <div style="background-color: #f4f4f4; padding: 10px; border-radius: 5px; font-family: monospace;">
+                            <pre style="margin: 0; overflow-x: auto;">
+{
+    "result": "Delete successfully",
+    "data": "Sale Order ID: 68"
+}
+                            </pre>
+                        </div>
+                    </div>
+                    <!-- 400 Error -->
+                    <div style="display: flex; align-items: center; margin-bottom: 10px;">
+                        <span style="font-weight: bold; padding: 5px 10px; color: white; border-radius: 3px; margin-right: 10px; background-color: #dc3545;">400</span>
+                        <span style="font-size: 14px; color: #333;">One of the given parameters is not valid</span>
+                    </div>
+
+                    <!-- 401 Error -->
+                    <div style="display: flex; align-items: center; margin-bottom: 10px;">
+                        <span style="font-weight: bold; padding: 5px 10px; color: white; border-radius: 3px; margin-right: 10px; background-color: #dc3545;">401</span>
+                        <span style="font-size: 14px; color: #333;">The user is not authorized. Authentication is required</span>
+                    </div>
+
+                    <!-- 403 Error -->
+                    <div style="display: flex; align-items: center; margin-bottom: 10px;">
+                        <span style="font-weight: bold; padding: 5px 10px; color: white; border-radius: 3px; margin-right: 10px; background-color: #dc3545;">403</span>
+                        <span style="font-size: 14px; color: #333;">You don't have the permission to access the requested resource</span>
+                    </div>
+
+                    <!-- 404 Error -->
+                    <div style="display: flex; align-items: center; margin-bottom: 10px;">
+                        <span style="font-weight: bold; padding: 5px 10px; color: white; border-radius: 3px; margin-right: 10px; background-color: #dc3545;">404</span>
+                        <span style="font-size: 14px; color: #333;">Requested resource not found</span>
+                    </div>
+                </div>
+            ]]>
+            </field>
+        </record>
+
+        <record id="purchase_order_rest_api" model="connection.api">
+            <field name="model_id" ref="purchase.model_purchase_order"/>
+            <field name="is_get">True</field>
+            <field name="is_post">True</field>
+            <field name="is_put">True</field>
+            <field name="is_delete">True</field>
+
+            <field name="input_param_get">
+                <![CDATA[
+                <div style="max-width: auto; margin: 20px auto; background: #fff; padding: 20px; border-radius: 5px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);">
+                    <div style="display: flex; align-items: center; margin-bottom: 20px;">
+                        <div style="font-weight: bold; padding: 5px 10px; color: white; border-radius: 3px; margin-right: 10px; background-color: #61affe;">GET ALL Purchase Order</div>
+                        <div style="font-size: 18px;">/list_purchase_order</div>
+                    </div>
+                    <div style="display: flex; align-items: center; margin-bottom: 20px;">
+                        <div style="font-weight: bold; padding: 5px 10px; color: white; border-radius: 3px; margin-right: 10px; background-color: #61affe;">GET UNIQUE Purchase Order</div>
+                        <div style="font-size: 18px;">/list_purchase_order/{id}</div>
+                    </div>
+                    <div style="margin-bottom: 20px;">
+                        <h3 style="font-size: 16px; color: #333; margin-bottom: 10px;">Parameters</h3>
+                        <table style="width: 100%; border-collapse: collapse; margin-bottom: 10px;">
+                            <tr>
+                                <th style="border: 1px solid #ddd; padding: 8px; text-align: left; background-color: #f2f2f2;">Param</th>
+                                <th style="border: 1px solid #ddd; padding: 8px; text-align: left; background-color: #f2f2f2;">Description</th>
+                            </tr>
+                            <tr>
+                                <td style="border: 1px solid #ddd; padding: 8px; text-align: left;">ID of Purchase Order</td>
+                                <td style="border: 1px solid #ddd; padding: 8px; text-align: left;"><span style="color: red;">*</span> ID (Require for <span style="font-weight: bold; padding: 5px 10px; color: white; border-radius: 3px; background-color: #61affe;">GET UNIQUE Purchase Order</span>) and put ID after the URL /list_purchase_order/{here}</td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div style="margin-bottom: 20px;">
+                        <h3 style="font-size: 16px; color: #333; margin-bottom: 10px;">Responses</h3>
+                        <div style="display: flex; align-items: center; margin-bottom: 10px;">
+                            <span style="font-weight: bold; padding: 5px 10px; color: white; border-radius: 3px; margin-right: 10px; background-color: #28a745;">200</span>
+                            <span style="font-size: 14px; color: #333;">Success</span>
+                        </div>
+                        <div style="margin-bottom: 10px;">
+                            <label for="media-type">Media type: application/json</label>
+                        </div>
+                        <div style="background-color: #f4f4f4; padding: 10px; border-radius: 5px; font-family: monospace;">
+                            <pre style="margin: 0; overflow-x: auto;">
+{
+    "result": {
+        "id": 1,
+        "name": "P00001",
+        "create_date": "2024-07-30 09:16:13",
+        "modify_date": "2024-07-30 09:16:56",
+        "date_order": "2024-07-30 09:16:15",
+        "partner": {
+            "id": 9,
+            "name": "Wood Corner"
+        },
+        "state": "draft",
+        "amount_untaxed": 3026.5,
+        "amount_tax": 453.98,
+        "amount_total": 3480.48,
+        "notes": '',
+        "oder_line": [
+            {
+                "product_id": 5,
+                "name": "[FURN_7777] Office Chair",
+                "product_uom_qty": 15.0,
+                "price_unit": 79.8,
+                "price_subtotal": 1197.0
+            },
+            {
+                "product_id": 31,
+                "name": "[FURN_6666] Acoustic Bloc Screens",
+                "product_uom_qty": 5.0,
+                "price_unit": 286.7,
+                "price_subtotal": 1433.5
+            },
+            {
+                "product_id": 32,
+                "name": "[FURN_8855] Drawer",
+                "product_uom_qty": 4.0,
+                "price_unit": 99.0,
+                "price_subtotal": 396.0
+            }
+        ]
+    }
+}
+                            </pre>
+                        </div>
+                    </div>
+                    <!-- 400 Error -->
+                    <div style="display: flex; align-items: center; margin-bottom: 10px;">
+                        <span style="font-weight: bold; padding: 5px 10px; color: white; border-radius: 3px; margin-right: 10px; background-color: #dc3545;">400</span>
+                        <span style="font-size: 14px; color: #333;">One of the given parameters is not valid</span>
+                    </div>
+
+                    <!-- 401 Error -->
+                    <div style="display: flex; align-items: center; margin-bottom: 10px;">
+                        <span style="font-weight: bold; padding: 5px 10px; color: white; border-radius: 3px; margin-right: 10px; background-color: #dc3545;">401</span>
+                        <span style="font-size: 14px; color: #333;">The user is not authorized. Authentication is required</span>
+                    </div>
+
+                    <!-- 403 Error -->
+                    <div style="display: flex; align-items: center; margin-bottom: 10px;">
+                        <span style="font-weight: bold; padding: 5px 10px; color: white; border-radius: 3px; margin-right: 10px; background-color: #dc3545;">403</span>
+                        <span style="font-size: 14px; color: #333;">You don't have the permission to access the requested resource</span>
+                    </div>
+
+                    <!-- 404 Error -->
+                    <div style="display: flex; align-items: center; margin-bottom: 10px;">
+                        <span style="font-weight: bold; padding: 5px 10px; color: white; border-radius: 3px; margin-right: 10px; background-color: #dc3545;">404</span>
+                        <span style="font-size: 14px; color: #333;">Requested resource not found</span>
+                    </div>
+                </div>
+            ]]>
+            </field>
+
+            <field name="input_param_post">
+                <![CDATA[
+                <div style="max-width: auto; margin: 20px auto; background: #fff; padding: 20px; border-radius: 5px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);">
+                    <div style="display: flex; align-items: center; margin-bottom: 20px;">
+                        <div style="font-weight: bold; padding: 5px 10px; color: white; border-radius: 3px; margin-right: 10px; background-color: #61affe;">POST</div>
+                        <div style="font-size: 18px;">/create_purchase_order</div>
+                    </div>
+                    <div style="display: flex; align-items: center; margin-bottom: 20px;">
+                        <div style="font-weight: bold; padding: 5px 10px; color: white; border-radius: 3px; margin-right: 10px; background-color: #61affe;">POST Purchase Order With Line</div>
+                        <div style="font-size: 18px;">/create_purchase_order_with_line</div>
+                    </div>
+                    <div style="margin-bottom: 20px;">
+                        <h3 style="font-size: 16px; color: #333; margin-bottom: 10px;">Parameters</h3>
+                        <table style="width: 100%; border-collapse: collapse; margin-bottom: 10px;">
+                            <tr>
+                                <th style="border: 1px solid #ddd; padding: 8px; text-align: left; background-color: #f2f2f2;">Param</th>
+                                <th style="border: 1px solid #ddd; padding: 8px; text-align: left; background-color: #f2f2f2;">Description</th>
+                            </tr>
+                            <tr>
+                                <td style="border: 1px solid #ddd; padding: 8px; text-align: left;"><span style="color: red;">*</span> ID of Vendor</td>
+                                <td style="border: 1px solid #ddd; padding: 8px; text-align: left;"> ID for search Vendor from Odoo Side and create Purchase Order</td>
+                            </tr>
+                            <tr>
+                                <td style="border: 1px solid #ddd; padding: 8px; text-align: left;"><span style="color: red;">*</span> Data of product lines</td>
+                                <td style="border: 1px solid #ddd; padding: 8px; text-align: left;"> Require for <span style="font-weight: bold; padding: 5px 10px; color: white; border-radius: 3px; margin-right: 10px; background-color: #61affe;">POST Purchase Order With Line</span> {"order_line": [{
+                                        "product_id": 1,
+                                        "product_qty": 2,
+                                        "price_unit": 10000
+                                    }]}</td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div style="margin-bottom: 20px;">
+                        <h3 style="font-size: 16px; color: #333; margin-bottom: 10px;">Example Request</h3>
+                        <div style="background-color: #f4f4f4; padding: 10px; border-radius: 5px; font-family: monospace;">
+                            <pre style="margin: 0; overflow-x: auto;">
+{
+    "partner_id": 10,
+    "order_line":
+    [
+        {
+        "product_id": 64,
+        "product_qty": 2,
+        "price_unit": 10000
+        },
+        {
+        "product_id": 16,
+        "product_qty": 2,
+        "price_unit": 10000
+        }
+    ]
+}
+                            </pre>
+                        </div>
+
+                        <h3 style="font-size: 16px; color: #333; margin-bottom: 10px;">Responses</h3>
+                        <div style="display: flex; align-items: center; margin-bottom: 10px;">
+                            <span style="font-weight: bold; padding: 5px 10px; color: white; border-radius: 3px; margin-right: 10px; background-color: #28a745;">200</span>
+                            <span style="font-size: 14px; color: #333;">Success</span>
+                        </div>
+                        <div style="margin-bottom: 10px;">
+                            <label for="media-type">Media type: application/json</label>
+                        </div>
+                        <div style="background-color: #f4f4f4; padding: 10px; border-radius: 5px; font-family: monospace;">
+                            <pre style="margin: 0; overflow-x: auto;">
+{
+    "result": "Create successfully",
+    "data": {
+        "id": 13,
+        "name": "P00013",
+        "create_date": "2024-08-14 04:06:38",
+        "modify_date": "2024-08-14 04:06:38",
+        "date_order": "2024-08-14 04:06:38",
+        "partner": {
+            "id": 10,
+            "name": "Deco Addict"
+        },
+        "state": "draft",
+        "amount_untaxed": 40000.0,
+        "amount_tax": 6000.0,
+        "amount_total": 46000.0,
+        "notes": '',
+        "oder_line": [
+            {
+                "product_id": 64,
+                "name": "[D_0045_GR] Stool (Grey)",
+                "product_uom_qty": 2.0,
+                "price_unit": 10000.0,
+                "price_subtotal": 20000.0
+            },
+            {
+                "product_id": 16,
+                "name": "[E-COM06] Corner Desk Right Sit",
+                "product_uom_qty": 2.0,
+                "price_unit": 10000.0,
+                "price_subtotal": 20000.0
+            }
+        ]
+    }
+}
+                            </pre>
+                        </div>
+                    </div>
+                    <!-- 400 Error -->
+                    <div style="display: flex; align-items: center; margin-bottom: 10px;">
+                        <span style="font-weight: bold; padding: 5px 10px; color: white; border-radius: 3px; margin-right: 10px; background-color: #dc3545;">400</span>
+                        <span style="font-size: 14px; color: #333;">One of the given parameters is not valid</span>
+                    </div>
+
+                    <!-- 401 Error -->
+                    <div style="display: flex; align-items: center; margin-bottom: 10px;">
+                        <span style="font-weight: bold; padding: 5px 10px; color: white; border-radius: 3px; margin-right: 10px; background-color: #dc3545;">401</span>
+                        <span style="font-size: 14px; color: #333;">The user is not authorized. Authentication is required</span>
+                    </div>
+
+                    <!-- 403 Error -->
+                    <div style="display: flex; align-items: center; margin-bottom: 10px;">
+                        <span style="font-weight: bold; padding: 5px 10px; color: white; border-radius: 3px; margin-right: 10px; background-color: #dc3545;">403</span>
+                        <span style="font-size: 14px; color: #333;">You don't have the permission to access the requested resource</span>
+                    </div>
+
+                    <!-- 404 Error -->
+                    <div style="display: flex; align-items: center; margin-bottom: 10px;">
+                        <span style="font-weight: bold; padding: 5px 10px; color: white; border-radius: 3px; margin-right: 10px; background-color: #dc3545;">404</span>
+                        <span style="font-size: 14px; color: #333;">Requested resource not found</span>
+                    </div>
+                </div>
+            ]]>
+            </field>
+
+            <field name="input_param_modify">
+                <![CDATA[
+                <div style="max-width: auto; margin: 20px auto; background: #fff; padding: 20px; border-radius: 5px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);">
+                    <div style="display: flex; align-items: center; margin-bottom: 20px;">
+                        <div style="font-weight: bold; padding: 5px 10px; color: white; border-radius: 3px; margin-right: 10px; background-color: #61affe;">PUT</div>
+                        <div style="font-size: 18px;">/update_purchase_order/{id}</div>
+                    </div>
+                    <div style="margin-bottom: 20px;">
+                        <h3 style="font-size: 16px; color: #333; margin-bottom: 10px;">Parameters</h3>
+                        <table style="width: 100%; border-collapse: collapse; margin-bottom: 10px;">
+                            <tr>
+                                <th style="border: 1px solid #ddd; padding: 8px; text-align: left; background-color: #f2f2f2;">Param</th>
+                                <th style="border: 1px solid #ddd; padding: 8px; text-align: left; background-color: #f2f2f2;">Description</th>
+                            </tr>
+                            <tr>
+                                <td style="border: 1px solid #ddd; padding: 8px; text-align: left;"><span style="color: red;">*</span> ID of Purchase Order</td>
+                                <td style="border: 1px solid #ddd; padding: 8px; text-align: left;"> Put ID of Purchase Order in the url after /update_purchase_order/</td>
+                            </tr>
+                            <tr>
+                                <td style="border: 1px solid #ddd; padding: 8px; text-align: left;"><span style="color: red;">*</span> Data of purchase order and product lines</td>
+                                <td style="border: 1px solid #ddd; padding: 8px; text-align: left;"> Input data for modify Purchase Order</td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div style="margin-bottom: 20px;">
+                        <h3 style="font-size: 16px; color: #333; margin-bottom: 10px;">Example Request</h3>
+                        <div style="background-color: #f4f4f4; padding: 10px; border-radius: 5px; font-family: monospace;">
+                            <pre style="margin: 0; overflow-x: auto;">
+{
+    "partner_id": 14,
+    "date_order": "2024-08-15 15:04:24",
+    "order_line": [
+        {
+            "product_id": 77,
+            "product_qty": 5,
+            "price_unit": 100.0
+        },
+        {
+            "product_id": 45,
+            "product_qty": 3,
+            "price_unit": 200.0
+        }
+    ],
+    "notes": "Please expedite this order.",
+    "state": "purchase"
+}
+                            </pre>
+                        </div>
+
+                        <h3 style="font-size: 16px; color: #333; margin-bottom: 10px;">Responses</h3>
+                        <div style="display: flex; align-items: center; margin-bottom: 10px;">
+                            <span style="font-weight: bold; padding: 5px 10px; color: white; border-radius: 3px; margin-right: 10px; background-color: #28a745;">200</span>
+                            <span style="font-size: 14px; color: #333;">Success</span>
+                        </div>
+                        <div style="margin-bottom: 10px;">
+                            <label for="media-type">Media type: application/json</label>
+                        </div>
+                        <div style="background-color: #f4f4f4; padding: 10px; border-radius: 5px; font-family: monospace;">
+                            <pre style="margin: 0; overflow-x: auto;">
+{
+    "result": "Edit successfully",
+    "data": {
+        "id": 13,
+        "name": "P00013",
+        "create_date": "2024-08-14 04:06:38",
+        "modify_date": "2024-08-14 04:28:43",
+        "date_order": "2024-08-15 15:04:24",
+        "partner": {
+            "id": 14,
+            "name": "Azure Interior"
+        },
+        "state": "purchase",
+        "amount_untaxed": 1100.0,
+        "amount_tax": 165.0,
+        "amount_total": 1265.0,
+        "notes": "<p>Please expedite this order.</p>",
+        "oder_line": [
+            {
+                "product_id": 77,
+                "name": "[FURN_0004] Letter Tray",
+                "product_qty": 5.0,
+                "price_unit": 100.0,
+                "price_subtotal": 500.0
+            },
+            {
+                "product_id": 45,
+                "name": "[FURN_2333] Table Leg",
+                "product_qty": 3.0,
+                "price_unit": 200.0,
+                "price_subtotal": 600.0
+            }
+        ]
+    }
+}
+                            </pre>
+                        </div>
+                    </div>
+                    <!-- 400 Error -->
+                    <div style="display: flex; align-items: center; margin-bottom: 10px;">
+                        <span style="font-weight: bold; padding: 5px 10px; color: white; border-radius: 3px; margin-right: 10px; background-color: #dc3545;">400</span>
+                        <span style="font-size: 14px; color: #333;">One of the given parameters is not valid</span>
+                    </div>
+
+                    <!-- 401 Error -->
+                    <div style="display: flex; align-items: center; margin-bottom: 10px;">
+                        <span style="font-weight: bold; padding: 5px 10px; color: white; border-radius: 3px; margin-right: 10px; background-color: #dc3545;">401</span>
+                        <span style="font-size: 14px; color: #333;">The user is not authorized. Authentication is required</span>
+                    </div>
+
+                    <!-- 403 Error -->
+                    <div style="display: flex; align-items: center; margin-bottom: 10px;">
+                        <span style="font-weight: bold; padding: 5px 10px; color: white; border-radius: 3px; margin-right: 10px; background-color: #dc3545;">403</span>
+                        <span style="font-size: 14px; color: #333;">You don't have the permission to access the requested resource</span>
+                    </div>
+
+                    <!-- 404 Error -->
+                    <div style="display: flex; align-items: center; margin-bottom: 10px;">
+                        <span style="font-weight: bold; padding: 5px 10px; color: white; border-radius: 3px; margin-right: 10px; background-color: #dc3545;">404</span>
+                        <span style="font-size: 14px; color: #333;">Requested resource not found</span>
+                    </div>
+                </div>
+            ]]>
+            </field>
+
+            <field name="input_param_del">
+                <![CDATA[
+                <div style="max-width: auto; margin: 20px auto; background: #fff; padding: 20px; border-radius: 5px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);">
+                    <div style="display: flex; align-items: center; margin-bottom: 20px;">
+                        <div style="font-weight: bold; padding: 5px 10px; color: white; border-radius: 3px; margin-right: 10px; background-color: #61affe;">DELETE</div>
+                        <div style="font-size: 18px;">/delete_purchase_order/{id}</div>
+                    </div>
+                    <div style="margin-bottom: 20px;">
+                        <h3 style="font-size: 16px; color: #333; margin-bottom: 10px;">Parameters</h3>
+                        <table style="width: 100%; border-collapse: collapse; margin-bottom: 10px;">
+                            <tr>
+                                <th style="border: 1px solid #ddd; padding: 8px; text-align: left; background-color: #f2f2f2;">Param</th>
+                                <th style="border: 1px solid #ddd; padding: 8px; text-align: left; background-color: #f2f2f2;">Description</th>
+                            </tr>
+                            <tr>
+                                <td style="border: 1px solid #ddd; padding: 8px; text-align: left;"><span style="color: red;">*</span> ID of Purchase Order</td>
+                                <td style="border: 1px solid #ddd; padding: 8px; text-align: left;"> Put ID of Purchase Order in the url after /delete_purchase_order/</td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div style="margin-bottom: 20px;">
+                        <h3 style="font-size: 16px; color: #333; margin-bottom: 10px;">Responses</h3>
+                        <div style="display: flex; align-items: center; margin-bottom: 10px;">
+                            <span style="font-weight: bold; padding: 5px 10px; color: white; border-radius: 3px; margin-right: 10px; background-color: #28a745;">200</span>
+                            <span style="font-size: 14px; color: #333;">Success</span>
+                        </div>
+                        <div style="margin-bottom: 10px;">
+                            <label for="media-type">Media type: application/json</label>
+                        </div>
+                        <div style="background-color: #f4f4f4; padding: 10px; border-radius: 5px; font-family: monospace;">
+                            <pre style="margin: 0; overflow-x: auto;">
+{
+    "result": "Delete successfully",
+    "data": "Purchase Order ID: 68"
+}
+                            </pre>
+                        </div>
+                    </div>
+                    <!-- 400 Error -->
+                    <div style="display: flex; align-items: center; margin-bottom: 10px;">
+                        <span style="font-weight: bold; padding: 5px 10px; color: white; border-radius: 3px; margin-right: 10px; background-color: #dc3545;">400</span>
+                        <span style="font-size: 14px; color: #333;">One of the given parameters is not valid</span>
+                    </div>
+
+                    <!-- 401 Error -->
+                    <div style="display: flex; align-items: center; margin-bottom: 10px;">
+                        <span style="font-weight: bold; padding: 5px 10px; color: white; border-radius: 3px; margin-right: 10px; background-color: #dc3545;">401</span>
+                        <span style="font-size: 14px; color: #333;">The user is not authorized. Authentication is required</span>
+                    </div>
+
+                    <!-- 403 Error -->
+                    <div style="display: flex; align-items: center; margin-bottom: 10px;">
+                        <span style="font-weight: bold; padding: 5px 10px; color: white; border-radius: 3px; margin-right: 10px; background-color: #dc3545;">403</span>
+                        <span style="font-size: 14px; color: #333;">You don't have the permission to access the requested resource</span>
+                    </div>
+
+                    <!-- 404 Error -->
+                    <div style="display: flex; align-items: center; margin-bottom: 10px;">
+                        <span style="font-weight: bold; padding: 5px 10px; color: white; border-radius: 3px; margin-right: 10px; background-color: #dc3545;">404</span>
+                        <span style="font-size: 14px; color: #333;">Requested resource not found</span>
+                    </div>
+                </div>
+            ]]>
+            </field>
+        </record>
+
+
+        <record id="res_partner_rest_api" model="connection.api">
+            <field name="model_id" ref="base.model_res_partner"/>
+            <field name="is_get">True</field>
+            <field name="is_post">True</field>
+            <field name="is_put">True</field>
+            <field name="is_delete">False</field>
+
+            <field name="input_param_get">
+                <![CDATA[
+                <div style="max-width: auto; margin: 20px auto; background: #fff; padding: 20px; border-radius: 5px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);">
+                    <div style="display: flex; align-items: center; margin-bottom: 20px;">
+                        <div style="font-weight: bold; padding: 5px 10px; color: white; border-radius: 3px; margin-right: 10px; background-color: #61affe;">GET ALL Contact</div>
+                        <div style="font-size: 18px;">/list_contact</div>
+                    </div>
+                    <div style="display: flex; align-items: center; margin-bottom: 20px;">
+                        <div style="font-weight: bold; padding: 5px 10px; color: white; border-radius: 3px; margin-right: 10px; background-color: #61affe;">GET UNIQUE Contact</div>
+                        <div style="font-size: 18px;">/list_contact/{id}</div>
+                    </div>
+                    <div style="margin-bottom: 20px;">
+                        <h3 style="font-size: 16px; color: #333; margin-bottom: 10px;">Parameters</h3>
+                        <table style="width: 100%; border-collapse: collapse; margin-bottom: 10px;">
+                            <tr>
+                                <th style="border: 1px solid #ddd; padding: 8px; text-align: left; background-color: #f2f2f2;">Param</th>
+                                <th style="border: 1px solid #ddd; padding: 8px; text-align: left; background-color: #f2f2f2;">Description</th>
+                            </tr>
+                            <tr>
+                                <td style="border: 1px solid #ddd; padding: 8px; text-align: left;">ID of User</td>
+                                <td style="border: 1px solid #ddd; padding: 8px; text-align: left;"><span style="color: red;">*</span> ID (Require for <span style="font-weight: bold; padding: 5px 10px; color: white; border-radius: 3px; background-color: #61affe;">GET UNIQUE Contact</span>) and put ID after the URL /list_contact/{here}</td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div style="margin-bottom: 20px;">
+                        <h3 style="font-size: 16px; color: #333; margin-bottom: 10px;">Responses</h3>
+                        <div style="display: flex; align-items: center; margin-bottom: 10px;">
+                            <span style="font-weight: bold; padding: 5px 10px; color: white; border-radius: 3px; margin-right: 10px; background-color: #28a745;">200</span>
+                            <span style="font-size: 14px; color: #333;">Success</span>
+                        </div>
+                        <div style="margin-bottom: 10px;">
+                            <label for="media-type">Media type: application/json</label>
+                        </div>
+                        <div style="background-color: #f4f4f4; padding: 10px; border-radius: 5px; font-family: monospace;">
+                            <pre style="margin: 0; overflow-x: auto;">
+{
+    "result": [
+        {
+            "id": 79,
+            "name": "0h3n-rijaune@yahoo.example.com",
+            "email": "0h3n-rijaune@yahoo.example.com",
+            "phone": false,
+            "mobile": "654687987654",
+            "street": false
+        },
+        {
+            "id": 50,
+            "name": "Abigail Peterson",
+            "email": "abigail.peterson39@example.com",
+            "phone": false,
+            "mobile": false,
+            "street": false
+        },
+        {
+            "id": 58,
+            "name": "Anita Oliver",
+            "email": "anita.oliver32@example.com",
+            "phone": false,
+            "mobile": "(555)-672-3185",
+            "street": false
+        },
+        {
+            "id": 51,
+            "name": "Audrey Peterson",
+            "email": "audrey.peterson25@example.com",
+            "phone": false,
+            "mobile": false,
+            "street": false
+        }
+    ]
+}
+                            </pre>
+                        </div>
+                    </div>
+                    <!-- 400 Error -->
+                    <div style="display: flex; align-items: center; margin-bottom: 10px;">
+                        <span style="font-weight: bold; padding: 5px 10px; color: white; border-radius: 3px; margin-right: 10px; background-color: #dc3545;">400</span>
+                        <span style="font-size: 14px; color: #333;">One of the given parameters is not valid</span>
+                    </div>
+
+                    <!-- 401 Error -->
+                    <div style="display: flex; align-items: center; margin-bottom: 10px;">
+                        <span style="font-weight: bold; padding: 5px 10px; color: white; border-radius: 3px; margin-right: 10px; background-color: #dc3545;">401</span>
+                        <span style="font-size: 14px; color: #333;">The user is not authorized. Authentication is required</span>
+                    </div>
+
+                    <!-- 403 Error -->
+                    <div style="display: flex; align-items: center; margin-bottom: 10px;">
+                        <span style="font-weight: bold; padding: 5px 10px; color: white; border-radius: 3px; margin-right: 10px; background-color: #dc3545;">403</span>
+                        <span style="font-size: 14px; color: #333;">You don't have the permission to access the requested resource</span>
+                    </div>
+
+                    <!-- 404 Error -->
+                    <div style="display: flex; align-items: center; margin-bottom: 10px;">
+                        <span style="font-weight: bold; padding: 5px 10px; color: white; border-radius: 3px; margin-right: 10px; background-color: #dc3545;">404</span>
+                        <span style="font-size: 14px; color: #333;">Requested resource not found</span>
+                    </div>
+                </div>
+            ]]>
+            </field>
+
+            <field name="input_param_post">
+                <![CDATA[
+                <div style="max-width: auto; margin: 20px auto; background: #fff; padding: 20px; border-radius: 5px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);">
+                    <div style="display: flex; align-items: center; margin-bottom: 20px;">
+                        <div style="font-weight: bold; padding: 5px 10px; color: white; border-radius: 3px; margin-right: 10px; background-color: #61affe;">POST</div>
+                        <div style="font-size: 18px;">/create_contact</div>
+                    </div>
+                    <div style="margin-bottom: 20px;">
+                        <h3 style="font-size: 16px; color: #333; margin-bottom: 10px;">Parameters</h3>
+                        <table style="width: 100%; border-collapse: collapse; margin-bottom: 10px;">
+                            <tr>
+                                <th style="border: 1px solid #ddd; padding: 8px; text-align: left; background-color: #f2f2f2;">Param</th>
+                                <th style="border: 1px solid #ddd; padding: 8px; text-align: left; background-color: #f2f2f2;">Description</th>
+                            </tr>
+                            <tr>
+                                <td style="border: 1px solid #ddd; padding: 8px; text-align: left;"><span style="color: red;">*</span> Name of Contact</td>
+                                <td style="border: 1px solid #ddd; padding: 8px; text-align: left;"> Input Name for Contact</td>
+                            </tr>
+                            <tr>
+                                <td style="border: 1px solid #ddd; padding: 8px; text-align: left;"><span style="color: red;">*</span> Other data about mobile, phone, street, email</td>
+                                <td style="border: 1px solid #ddd; padding: 8px; text-align: left;"> These datas will be create for contact o</td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div style="margin-bottom: 20px;">
+                        <h3 style="font-size: 16px; color: #333; margin-bottom: 10px;">Example Request</h3>
+                        <div style="background-color: #f4f4f4; padding: 10px; border-radius: 5px; font-family: monospace;">
+                            <pre style="margin: 0; overflow-x: auto;">
+{
+    "name": "Steven",
+    "email": "my_mail@gmail.com",
+    "phone": "0123456784",
+    "mobile": "0123456784",
+    "street": "Netherlands Taiwain"
+}
+                            </pre>
+                        </div>
+
+                        <h3 style="font-size: 16px; color: #333; margin-bottom: 10px;">Responses</h3>
+                        <div style="display: flex; align-items: center; margin-bottom: 10px;">
+                            <span style="font-weight: bold; padding: 5px 10px; color: white; border-radius: 3px; margin-right: 10px; background-color: #28a745;">200</span>
+                            <span style="font-size: 14px; color: #333;">Success</span>
+                        </div>
+                        <div style="margin-bottom: 10px;">
+                            <label for="media-type">Media type: application/json</label>
+                        </div>
+                        <div style="background-color: #f4f4f4; padding: 10px; border-radius: 5px; font-family: monospace;">
+                            <pre style="margin: 0; overflow-x: auto;">
+{
+    "result": "Create successfully",
+    "data": {
+        "id": 104,
+        "name": "Steven",
+        "email": "my_mail@gmail.com",
+        "phone": "0123456784",
+        "mobile": "0123456784",
+        "street": "Netherlands Taiwain"
+    }
+}
+                            </pre>
+                        </div>
+                    </div>
+                    <!-- 400 Error -->
+                    <div style="display: flex; align-items: center; margin-bottom: 10px;">
+                        <span style="font-weight: bold; padding: 5px 10px; color: white; border-radius: 3px; margin-right: 10px; background-color: #dc3545;">400</span>
+                        <span style="font-size: 14px; color: #333;">One of the given parameters is not valid</span>
+                    </div>
+
+                    <!-- 401 Error -->
+                    <div style="display: flex; align-items: center; margin-bottom: 10px;">
+                        <span style="font-weight: bold; padding: 5px 10px; color: white; border-radius: 3px; margin-right: 10px; background-color: #dc3545;">401</span>
+                        <span style="font-size: 14px; color: #333;">The user is not authorized. Authentication is required</span>
+                    </div>
+
+                    <!-- 403 Error -->
+                    <div style="display: flex; align-items: center; margin-bottom: 10px;">
+                        <span style="font-weight: bold; padding: 5px 10px; color: white; border-radius: 3px; margin-right: 10px; background-color: #dc3545;">403</span>
+                        <span style="font-size: 14px; color: #333;">You don't have the permission to access the requested resource</span>
+                    </div>
+
+                    <!-- 404 Error -->
+                    <div style="display: flex; align-items: center; margin-bottom: 10px;">
+                        <span style="font-weight: bold; padding: 5px 10px; color: white; border-radius: 3px; margin-right: 10px; background-color: #dc3545;">404</span>
+                        <span style="font-size: 14px; color: #333;">Requested resource not found</span>
+                    </div>
+                </div>
+            ]]>
+            </field>
+
+            <field name="input_param_modify">
+                <![CDATA[
+                <div style="max-width: auto; margin: 20px auto; background: #fff; padding: 20px; border-radius: 5px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);">
+                    <div style="display: flex; align-items: center; margin-bottom: 20px;">
+                        <div style="font-weight: bold; padding: 5px 10px; color: white; border-radius: 3px; margin-right: 10px; background-color: #61affe;">PUT</div>
+                        <div style="font-size: 18px;">/update_contact/{id}</div>
+                    </div>
+                    <div style="margin-bottom: 20px;">
+                        <h3 style="font-size: 16px; color: #333; margin-bottom: 10px;">Parameters</h3>
+                        <table style="width: 100%; border-collapse: collapse; margin-bottom: 10px;">
+                            <tr>
+                                <th style="border: 1px solid #ddd; padding: 8px; text-align: left; background-color: #f2f2f2;">Param</th>
+                                <th style="border: 1px solid #ddd; padding: 8px; text-align: left; background-color: #f2f2f2;">Description</th>
+                            </tr>
+                            <tr>
+                                <td style="border: 1px solid #ddd; padding: 8px; text-align: left;"><span style="color: red;">*</span> ID of Contact</td>
+                                <td style="border: 1px solid #ddd; padding: 8px; text-align: left;"> Put ID of Contact in the url after /update_contact/{here}</td>
+                            </tr>
+                            <tr>
+                                <td style="border: 1px solid #ddd; padding: 8px; text-align: left;"><span style="color: red;">*</span> Data of Contact</td>
+                                <td style="border: 1px solid #ddd; padding: 8px; text-align: left;"> Input data for modify Contact</td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div style="margin-bottom: 20px;">
+                        <h3 style="font-size: 16px; color: #333; margin-bottom: 10px;">Example Request</h3>
+                        <div style="background-color: #f4f4f4; padding: 10px; border-radius: 5px; font-family: monospace;">
+                            <pre style="margin: 0; overflow-x: auto;">
+{
+    "name": "Steven",
+    "email": "my_mail123@gmail.com",
+    "phone": "012345678488",
+    "mobile": "012345678488",
+    "street": "Netherlands Shanghai"
+}
+                            </pre>
+                        </div>
+
+                        <h3 style="font-size: 16px; color: #333; margin-bottom: 10px;">Responses</h3>
+                        <div style="display: flex; align-items: center; margin-bottom: 10px;">
+                            <span style="font-weight: bold; padding: 5px 10px; color: white; border-radius: 3px; margin-right: 10px; background-color: #28a745;">200</span>
+                            <span style="font-size: 14px; color: #333;">Success</span>
+                        </div>
+                        <div style="margin-bottom: 10px;">
+                            <label for="media-type">Media type: application/json</label>
+                        </div>
+                        <div style="background-color: #f4f4f4; padding: 10px; border-radius: 5px; font-family: monospace;">
+                            <pre style="margin: 0; overflow-x: auto;">
+{
+    "result": "Edit successfully",
+    "data": {
+        "id": 104,
+        "name": "Steven",
+        "email": "my_mail123@gmail.com",
+        "phone": "012345678488",
+        "mobile": "012345678488",
+        "street": "Netherlands Shanghai"
+    }
+}
+                            </pre>
+                        </div>
+                    </div>
+                    <!-- 400 Error -->
+                    <div style="display: flex; align-items: center; margin-bottom: 10px;">
+                        <span style="font-weight: bold; padding: 5px 10px; color: white; border-radius: 3px; margin-right: 10px; background-color: #dc3545;">400</span>
+                        <span style="font-size: 14px; color: #333;">One of the given parameters is not valid</span>
+                    </div>
+
+                    <!-- 401 Error -->
+                    <div style="display: flex; align-items: center; margin-bottom: 10px;">
+                        <span style="font-weight: bold; padding: 5px 10px; color: white; border-radius: 3px; margin-right: 10px; background-color: #dc3545;">401</span>
+                        <span style="font-size: 14px; color: #333;">The user is not authorized. Authentication is required</span>
+                    </div>
+
+                    <!-- 403 Error -->
+                    <div style="display: flex; align-items: center; margin-bottom: 10px;">
+                        <span style="font-weight: bold; padding: 5px 10px; color: white; border-radius: 3px; margin-right: 10px; background-color: #dc3545;">403</span>
+                        <span style="font-size: 14px; color: #333;">You don't have the permission to access the requested resource</span>
+                    </div>
+
+                    <!-- 404 Error -->
+                    <div style="display: flex; align-items: center; margin-bottom: 10px;">
+                        <span style="font-weight: bold; padding: 5px 10px; color: white; border-radius: 3px; margin-right: 10px; background-color: #dc3545;">404</span>
+                        <span style="font-size: 14px; color: #333;">Requested resource not found</span>
+                    </div>
+                </div>
+            ]]>
+            </field>
+
+        </record>
+
+        <record id="res_user_rest_api" model="connection.api">
+            <field name="model_id" ref="base.model_res_users"/>
+            <field name="is_get">True</field>
+            <field name="is_post">True</field>
+            <field name="is_put">True</field>
+            <field name="is_delete">False</field>
+
+            <field name="input_param_get">
+                <![CDATA[
+                <div style="max-width: auto; margin: 20px auto; background: #fff; padding: 20px; border-radius: 5px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);">
+                    <div style="display: flex; align-items: center; margin-bottom: 20px;">
+                        <div style="font-weight: bold; padding: 5px 10px; color: white; border-radius: 3px; margin-right: 10px; background-color: #61affe;">GET ALL User</div>
+                        <div style="font-size: 18px;">/list_user</div>
+                    </div>
+                    <div style="display: flex; align-items: center; margin-bottom: 20px;">
+                        <div style="font-weight: bold; padding: 5px 10px; color: white; border-radius: 3px; margin-right: 10px; background-color: #61affe;">GET UNIQUE User</div>
+                        <div style="font-size: 18px;">/list_user/{id}</div>
+                    </div>
+                    <div style="margin-bottom: 20px;">
+                        <h3 style="font-size: 16px; color: #333; margin-bottom: 10px;">Parameters</h3>
+                        <table style="width: 100%; border-collapse: collapse; margin-bottom: 10px;">
+                            <tr>
+                                <th style="border: 1px solid #ddd; padding: 8px; text-align: left; background-color: #f2f2f2;">Param</th>
+                                <th style="border: 1px solid #ddd; padding: 8px; text-align: left; background-color: #f2f2f2;">Description</th>
+                            </tr>
+                            <tr>
+                                <td style="border: 1px solid #ddd; padding: 8px; text-align: left;">ID of User</td>
+                                <td style="border: 1px solid #ddd; padding: 8px; text-align: left;"><span style="color: red;">*</span> ID (Require for <span style="font-weight: bold; padding: 5px 10px; color: white; border-radius: 3px; background-color: #61affe;">GET UNIQUE User</span>) and put ID after the URL /list_user/{here}</td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div style="margin-bottom: 20px;">
+                        <h3 style="font-size: 16px; color: #333; margin-bottom: 10px;">Responses</h3>
+                        <div style="display: flex; align-items: center; margin-bottom: 10px;">
+                            <span style="font-weight: bold; padding: 5px 10px; color: white; border-radius: 3px; margin-right: 10px; background-color: #28a745;">200</span>
+                            <span style="font-size: 14px; color: #333;">Success</span>
+                        </div>
+                        <div style="margin-bottom: 10px;">
+                            <label for="media-type">Media type: application/json</label>
+                        </div>
+                        <div style="background-color: #f4f4f4; padding: 10px; border-radius: 5px; font-family: monospace;">
+                            <pre style="margin: 0; overflow-x: auto;">
+{
+    "result": [
+        {
+            "id": 7,
+            "name": "Joel Willis",
+            "login": "portal"
+        },
+        {
+            "id": 6,
+            "name": "Marc Demo",
+            "login": "demo"
+        },
+        {
+            "id": 2,
+            "name": "Admin Marc",
+            "login": "admin",
+            "api_key": "2b3a4def-ce63-4762-ae31-49867078f886"
+        },
+        {
+            "id": 10,
+            "name": "Steven",
+            "login": "admin_steven"
+        }
+    ]
+}
+                            </pre>
+                        </div>
+                    </div>
+                    <!-- 400 Error -->
+                    <div style="display: flex; align-items: center; margin-bottom: 10px;">
+                        <span style="font-weight: bold; padding: 5px 10px; color: white; border-radius: 3px; margin-right: 10px; background-color: #dc3545;">400</span>
+                        <span style="font-size: 14px; color: #333;">One of the given parameters is not valid</span>
+                    </div>
+
+                    <!-- 401 Error -->
+                    <div style="display: flex; align-items: center; margin-bottom: 10px;">
+                        <span style="font-weight: bold; padding: 5px 10px; color: white; border-radius: 3px; margin-right: 10px; background-color: #dc3545;">401</span>
+                        <span style="font-size: 14px; color: #333;">The user is not authorized. Authentication is required</span>
+                    </div>
+
+                    <!-- 403 Error -->
+                    <div style="display: flex; align-items: center; margin-bottom: 10px;">
+                        <span style="font-weight: bold; padding: 5px 10px; color: white; border-radius: 3px; margin-right: 10px; background-color: #dc3545;">403</span>
+                        <span style="font-size: 14px; color: #333;">You don't have the permission to access the requested resource</span>
+                    </div>
+
+                    <!-- 404 Error -->
+                    <div style="display: flex; align-items: center; margin-bottom: 10px;">
+                        <span style="font-weight: bold; padding: 5px 10px; color: white; border-radius: 3px; margin-right: 10px; background-color: #dc3545;">404</span>
+                        <span style="font-size: 14px; color: #333;">Requested resource not found</span>
+                    </div>
+                </div>
+            ]]>
+            </field>
+
+            <field name="input_param_post">
+                <![CDATA[
+                <div style="max-width: auto; margin: 20px auto; background: #fff; padding: 20px; border-radius: 5px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);">
+                    <div style="display: flex; align-items: center; margin-bottom: 20px;">
+                        <div style="font-weight: bold; padding: 5px 10px; color: white; border-radius: 3px; margin-right: 10px; background-color: #61affe;">POST</div>
+                        <div style="font-size: 18px;">/create_res_user</div>
+                    </div>
+                    <div style="margin-bottom: 20px;">
+                        <h3 style="font-size: 16px; color: #333; margin-bottom: 10px;">Parameters</h3>
+                        <table style="width: 100%; border-collapse: collapse; margin-bottom: 10px;">
+                            <tr>
+                                <th style="border: 1px solid #ddd; padding: 8px; text-align: left; background-color: #f2f2f2;">Param</th>
+                                <th style="border: 1px solid #ddd; padding: 8px; text-align: left; background-color: #f2f2f2;">Description</th>
+                            </tr>
+                            <tr>
+                                <td style="border: 1px solid #ddd; padding: 8px; text-align: left;"><span style="color: red;">*</span> Name of user</td>
+                                <td style="border: 1px solid #ddd; padding: 8px; text-align: left;"> Input Name for user</td>
+                            </tr>
+                            <tr>
+                                <td style="border: 1px solid #ddd; padding: 8px; text-align: left;"><span style="color: red;">*</span> Password of user</td>
+                                <td style="border: 1px solid #ddd; padding: 8px; text-align: left;"> Input password</td>
+                            </tr>
+                            <tr>
+                                <td style="border: 1px solid #ddd; padding: 8px; text-align: left;"><span style="color: red;">*</span> Login ( Email ) of user</td>
+                                <td style="border: 1px solid #ddd; padding: 8px; text-align: left;"> User will use this data for login</td>
+                            </tr>
+                            <tr>
+                                <td style="border: 1px solid #ddd; padding: 8px; text-align: left;"><span style="color: red;">*</span> Other data about mobile, phone, street</td>
+                                <td style="border: 1px solid #ddd; padding: 8px; text-align: left;"> These datas will be related to contact of user</td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div style="margin-bottom: 20px;">
+                        <h3 style="font-size: 16px; color: #333; margin-bottom: 10px;">Example Request</h3>
+                        <div style="background-color: #f4f4f4; padding: 10px; border-radius: 5px; font-family: monospace;">
+                            <pre style="margin: 0; overflow-x: auto;">
+{
+    "name": "Steven",
+    "login": "admin_steven",
+    "password": "admin_123",
+    "phone": "012345678",
+    "mobile": "012345678",
+    "street": "Netherlands"
+}
+                            </pre>
+                        </div>
+
+                        <h3 style="font-size: 16px; color: #333; margin-bottom: 10px;">Responses</h3>
+                        <div style="display: flex; align-items: center; margin-bottom: 10px;">
+                            <span style="font-weight: bold; padding: 5px 10px; color: white; border-radius: 3px; margin-right: 10px; background-color: #28a745;">200</span>
+                            <span style="font-size: 14px; color: #333;">Success</span>
+                        </div>
+                        <div style="margin-bottom: 10px;">
+                            <label for="media-type">Media type: application/json</label>
+                        </div>
+                        <div style="background-color: #f4f4f4; padding: 10px; border-radius: 5px; font-family: monospace;">
+                            <pre style="margin: 0; overflow-x: auto;">
+{
+    "result": "Create successfully",
+    "data": {
+        "id": 11,
+        "name": "Steven",
+        "login": "admin_steven"
+    }
+}
+                            </pre>
+                        </div>
+                    </div>
+                    <!-- 400 Error -->
+                    <div style="display: flex; align-items: center; margin-bottom: 10px;">
+                        <span style="font-weight: bold; padding: 5px 10px; color: white; border-radius: 3px; margin-right: 10px; background-color: #dc3545;">400</span>
+                        <span style="font-size: 14px; color: #333;">One of the given parameters is not valid</span>
+                    </div>
+
+                    <!-- 401 Error -->
+                    <div style="display: flex; align-items: center; margin-bottom: 10px;">
+                        <span style="font-weight: bold; padding: 5px 10px; color: white; border-radius: 3px; margin-right: 10px; background-color: #dc3545;">401</span>
+                        <span style="font-size: 14px; color: #333;">The user is not authorized. Authentication is required</span>
+                    </div>
+
+                    <!-- 403 Error -->
+                    <div style="display: flex; align-items: center; margin-bottom: 10px;">
+                        <span style="font-weight: bold; padding: 5px 10px; color: white; border-radius: 3px; margin-right: 10px; background-color: #dc3545;">403</span>
+                        <span style="font-size: 14px; color: #333;">You don't have the permission to access the requested resource</span>
+                    </div>
+
+                    <!-- 404 Error -->
+                    <div style="display: flex; align-items: center; margin-bottom: 10px;">
+                        <span style="font-weight: bold; padding: 5px 10px; color: white; border-radius: 3px; margin-right: 10px; background-color: #dc3545;">404</span>
+                        <span style="font-size: 14px; color: #333;">Requested resource not found</span>
+                    </div>
+                </div>
+            ]]>
+            </field>
+
+            <field name="input_param_modify">
+                <![CDATA[
+                <div style="max-width: auto; margin: 20px auto; background: #fff; padding: 20px; border-radius: 5px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);">
+                    <div style="display: flex; align-items: center; margin-bottom: 20px;">
+                        <div style="font-weight: bold; padding: 5px 10px; color: white; border-radius: 3px; margin-right: 10px; background-color: #61affe;">PUT</div>
+                        <div style="font-size: 18px;">/update_user/{id}</div>
+                    </div>
+                    <div style="margin-bottom: 20px;">
+                        <h3 style="font-size: 16px; color: #333; margin-bottom: 10px;">Parameters</h3>
+                        <table style="width: 100%; border-collapse: collapse; margin-bottom: 10px;">
+                            <tr>
+                                <th style="border: 1px solid #ddd; padding: 8px; text-align: left; background-color: #f2f2f2;">Param</th>
+                                <th style="border: 1px solid #ddd; padding: 8px; text-align: left; background-color: #f2f2f2;">Description</th>
+                            </tr>
+                            <tr>
+                                <td style="border: 1px solid #ddd; padding: 8px; text-align: left;"><span style="color: red;">*</span> ID of User</td>
+                                <td style="border: 1px solid #ddd; padding: 8px; text-align: left;"> Put ID of User in the url after /update_user/{here}</td>
+                            </tr>
+                            <tr>
+                                <td style="border: 1px solid #ddd; padding: 8px; text-align: left;"><span style="color: red;">*</span> Data of user</td>
+                                <td style="border: 1px solid #ddd; padding: 8px; text-align: left;"> Input data for modify User</td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div style="margin-bottom: 20px;">
+                        <h3 style="font-size: 16px; color: #333; margin-bottom: 10px;">Example Request</h3>
+                        <div style="background-color: #f4f4f4; padding: 10px; border-radius: 5px; font-family: monospace;">
+                            <pre style="margin: 0; overflow-x: auto;">
+{
+    "name": "Steven",
+    "password": "admin",
+    "phone": "012345678",
+    "mobile": "012345678",
+    "street": "Netherlands"
+}
+                            </pre>
+                        </div>
+
+                        <h3 style="font-size: 16px; color: #333; margin-bottom: 10px;">Responses</h3>
+                        <div style="display: flex; align-items: center; margin-bottom: 10px;">
+                            <span style="font-weight: bold; padding: 5px 10px; color: white; border-radius: 3px; margin-right: 10px; background-color: #28a745;">200</span>
+                            <span style="font-size: 14px; color: #333;">Success</span>
+                        </div>
+                        <div style="margin-bottom: 10px;">
+                            <label for="media-type">Media type: application/json</label>
+                        </div>
+                        <div style="background-color: #f4f4f4; padding: 10px; border-radius: 5px; font-family: monospace;">
+                            <pre style="margin: 0; overflow-x: auto;">
+{
+    "result": "Edit successfully",
+    "data": {
+        "id": 2,
+        "name": "Steven",
+        "login": "admin",
+        "api_key": "2b3a4def-ce63-4762-ae31-49867078f886"
+    }
+}
+                            </pre>
+                        </div>
+                    </div>
+                    <!-- 400 Error -->
+                    <div style="display: flex; align-items: center; margin-bottom: 10px;">
+                        <span style="font-weight: bold; padding: 5px 10px; color: white; border-radius: 3px; margin-right: 10px; background-color: #dc3545;">400</span>
+                        <span style="font-size: 14px; color: #333;">One of the given parameters is not valid</span>
+                    </div>
+
+                    <!-- 401 Error -->
+                    <div style="display: flex; align-items: center; margin-bottom: 10px;">
+                        <span style="font-weight: bold; padding: 5px 10px; color: white; border-radius: 3px; margin-right: 10px; background-color: #dc3545;">401</span>
+                        <span style="font-size: 14px; color: #333;">The user is not authorized. Authentication is required</span>
+                    </div>
+
+                    <!-- 403 Error -->
+                    <div style="display: flex; align-items: center; margin-bottom: 10px;">
+                        <span style="font-weight: bold; padding: 5px 10px; color: white; border-radius: 3px; margin-right: 10px; background-color: #dc3545;">403</span>
+                        <span style="font-size: 14px; color: #333;">You don't have the permission to access the requested resource</span>
+                    </div>
+
+                    <!-- 404 Error -->
+                    <div style="display: flex; align-items: center; margin-bottom: 10px;">
+                        <span style="font-weight: bold; padding: 5px 10px; color: white; border-radius: 3px; margin-right: 10px; background-color: #dc3545;">404</span>
+                        <span style="font-size: 14px; color: #333;">Requested resource not found</span>
+                    </div>
+                </div>
+            ]]>
+            </field>
+
+        </record>
+
+        <record id="product_rest_api" model="connection.api">
+            <field name="model_id" ref="product.model_product_product"/>
+            <field name="is_get">True</field>
+            <field name="is_post">False</field>
+            <field name="is_put">False</field>
+            <field name="is_delete">False</field>
+
+            <field name="input_param_get">
+                <![CDATA[
+                <div style="max-width: auto; margin: 20px auto; background: #fff; padding: 20px; border-radius: 5px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);">
+                    <div style="display: flex; align-items: center; margin-bottom: 20px;">
+                        <div style="font-weight: bold; padding: 5px 10px; color: white; border-radius: 3px; margin-right: 10px; background-color: #61affe;">GET ALL Product</div>
+                        <div style="font-size: 18px;">/list_product</div>
+                    </div>
+                    <div style="display: flex; align-items: center; margin-bottom: 20px;">
+                        <div style="font-weight: bold; padding: 5px 10px; color: white; border-radius: 3px; margin-right: 10px; background-color: #61affe;">GET UNIQUE Product</div>
+                        <div style="font-size: 18px;">/list_product/{id}</div>
+                    </div>
+                    <div style="margin-bottom: 20px;">
+                        <h3 style="font-size: 16px; color: #333; margin-bottom: 10px;">Parameters</h3>
+                        <table style="width: 100%; border-collapse: collapse; margin-bottom: 10px;">
+                            <tr>
+                                <th style="border: 1px solid #ddd; padding: 8px; text-align: left; background-color: #f2f2f2;">Param</th>
+                                <th style="border: 1px solid #ddd; padding: 8px; text-align: left; background-color: #f2f2f2;">Description</th>
+                            </tr>
+                            <tr>
+                                <td style="border: 1px solid #ddd; padding: 8px; text-align: left;">ID of Product</td>
+                                <td style="border: 1px solid #ddd; padding: 8px; text-align: left;"><span style="color: red;">*</span> ID (Require for <span style="font-weight: bold; padding: 5px 10px; color: white; border-radius: 3px; background-color: #61affe;">GET UNIQUE Product</span>) and put ID after the URL /list_product/{here}</td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div style="margin-bottom: 20px;">
+                        <h3 style="font-size: 16px; color: #333; margin-bottom: 10px;">Responses</h3>
+                        <div style="display: flex; align-items: center; margin-bottom: 10px;">
+                            <span style="font-weight: bold; padding: 5px 10px; color: white; border-radius: 3px; margin-right: 10px; background-color: #28a745;">200</span>
+                            <span style="font-size: 14px; color: #333;">Success</span>
+                        </div>
+                        <div style="margin-bottom: 10px;">
+                            <label for="media-type">Media type: application/json</label>
+                        </div>
+                        <div style="background-color: #f4f4f4; padding: 10px; border-radius: 5px; font-family: monospace;">
+                            <pre style="margin: 0; overflow-x: auto;">
+{
+    "result": [
+        {
+            "id": 41,
+            "name": "[COMM] Communication",
+            "sale_price": 1.0,
+            "type": "Service",
+            "internal_reference": "COMM",
+            "barcode": false
+        },
+        {
+            "id": 85,
+            "name": "[CONS_0001] Whiteboard Pen",
+            "sale_price": 1.2,
+            "type": "Consumable",
+            "internal_reference": "CONS_0001",
+            "barcode": false
+        },
+        {
+            "id": 47,
+            "name": "[CONS_25630] Screw",
+            "sale_price": 0.2,
+            "type": "Consumable",
+            "internal_reference": "CONS_25630",
+            "barcode": false
+        },
+        {
+            "id": 46,
+            "name": "[CONS_89957] Bolt",
+            "sale_price": 0.5,
+            "type": "Consumable",
+            "internal_reference": "CONS_89957",
+            "barcode": false
+        },
+        {
+            "id": 87,
+            "name": "Customizable Desk",
+            "sale_price": 750.0,
+            "type": "Storable Product",
+            "internal_reference": "DESK0005",
+            "barcode": false
+        },
+        {
+            "id": 88,
+            "name": "Customizable Desk",
+            "sale_price": 750.0,
+            "type": "Storable Product",
+            "internal_reference": "DESK0006",
+            "barcode": false
+        },
+        {
+            "id": 74,
+            "name": "[DISC] Discount",
+            "sale_price": 0.0,
+            "type": "Consumable",
+            "internal_reference": "DISC",
+            "barcode": false
+        },
+        {
+            "id": 62,
+            "name": "[D_0045] Stool",
+            "sale_price": 500.0,
+            "type": "Storable Product",
+            "internal_reference": "D_0045_B",
+            "barcode": false
+        },
+        {
+            "id": 63,
+            "name": "[D_0045] Stool",
+            "sale_price": 500.0,
+            "type": "Storable Product",
+            "internal_reference": "D_0045_G",
+            "barcode": false
+        },
+        {
+            "id": 64,
+            "name": "[D_0045] Stool",
+            "sale_price": 500.0,
+            "type": "Storable Product",
+            "internal_reference": "D_0045_GR",
+            "barcode": false
+        },
+        {
+            "id": 141,
+            "name": "[Delivery_001] Bpost Domestic bpack 24h Pro",
+            "sale_price": 0.0,
+            "type": "Service",
+            "internal_reference": "Delivery_001",
+            "barcode": false
+        }
+    ]
+}
+                            </pre>
+                        </div>
+                    </div>
+                    <!-- 400 Error -->
+                    <div style="display: flex; align-items: center; margin-bottom: 10px;">
+                        <span style="font-weight: bold; padding: 5px 10px; color: white; border-radius: 3px; margin-right: 10px; background-color: #dc3545;">400</span>
+                        <span style="font-size: 14px; color: #333;">One of the given parameters is not valid</span>
+                    </div>
+
+                    <!-- 401 Error -->
+                    <div style="display: flex; align-items: center; margin-bottom: 10px;">
+                        <span style="font-weight: bold; padding: 5px 10px; color: white; border-radius: 3px; margin-right: 10px; background-color: #dc3545;">401</span>
+                        <span style="font-size: 14px; color: #333;">The user is not authorized. Authentication is required</span>
+                    </div>
+
+                    <!-- 403 Error -->
+                    <div style="display: flex; align-items: center; margin-bottom: 10px;">
+                        <span style="font-weight: bold; padding: 5px 10px; color: white; border-radius: 3px; margin-right: 10px; background-color: #dc3545;">403</span>
+                        <span style="font-size: 14px; color: #333;">You don't have the permission to access the requested resource</span>
+                    </div>
+
+                    <!-- 404 Error -->
+                    <div style="display: flex; align-items: center; margin-bottom: 10px;">
+                        <span style="font-weight: bold; padding: 5px 10px; color: white; border-radius: 3px; margin-right: 10px; background-color: #dc3545;">404</span>
+                        <span style="font-size: 14px; color: #333;">Requested resource not found</span>
+                    </div>
+                </div>
+            ]]>
+            </field>
+
+        </record>
+
+
+        <record id="invoice_rest_api" model="connection.api">
+            <field name="model_id" ref="account.model_account_move"/>
+            <field name="is_get">True</field>
+            <field name="is_post">False</field>
+            <field name="is_put">False</field>
+            <field name="is_delete">False</field>
+
+            <field name="input_param_get">
+                <![CDATA[
+                <div style="max-width: auto; margin: 20px auto; background: #fff; padding: 20px; border-radius: 5px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);">
+                    <div style="display: flex; align-items: center; margin-bottom: 20px;">
+                        <div style="font-weight: bold; padding: 5px 10px; color: white; border-radius: 3px; margin-right: 10px; background-color: #61affe;">GET ALL Invoice</div>
+                        <div style="font-size: 18px;">/list_invoice</div>
+                    </div>
+                    <div style="display: flex; align-items: center; margin-bottom: 20px;">
+                        <div style="font-weight: bold; padding: 5px 10px; color: white; border-radius: 3px; margin-right: 10px; background-color: #61affe;">GET UNIQUE Invoice</div>
+                        <div style="font-size: 18px;">/list_invoice/{id}</div>
+                    </div>
+                    <div style="margin-bottom: 20px;">
+                        <h3 style="font-size: 16px; color: #333; margin-bottom: 10px;">Parameters</h3>
+                        <table style="width: 100%; border-collapse: collapse; margin-bottom: 10px;">
+                            <tr>
+                                <th style="border: 1px solid #ddd; padding: 8px; text-align: left; background-color: #f2f2f2;">Param</th>
+                                <th style="border: 1px solid #ddd; padding: 8px; text-align: left; background-color: #f2f2f2;">Description</th>
+                            </tr>
+                            <tr>
+                                <td style="border: 1px solid #ddd; padding: 8px; text-align: left;">ID of Invoice</td>
+                                <td style="border: 1px solid #ddd; padding: 8px; text-align: left;"><span style="color: red;">*</span> ID (Require for <span style="font-weight: bold; padding: 5px 10px; color: white; border-radius: 3px; background-color: #61affe;">GET UNIQUE Invoice</span>) and put ID after the URL /list_invoice/{here}</td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div style="margin-bottom: 20px;">
+                        <h3 style="font-size: 16px; color: #333; margin-bottom: 10px;">Responses</h3>
+                        <div style="display: flex; align-items: center; margin-bottom: 10px;">
+                            <span style="font-weight: bold; padding: 5px 10px; color: white; border-radius: 3px; margin-right: 10px; background-color: #28a745;">200</span>
+                            <span style="font-size: 14px; color: #333;">Success</span>
+                        </div>
+                        <div style="margin-bottom: 10px;">
+                            <label for="media-type">Media type: application/json</label>
+                        </div>
+                        <div style="background-color: #f4f4f4; padding: 10px; border-radius: 5px; font-family: monospace;">
+                            <pre style="margin: 0; overflow-x: auto;">
+{
+    "result": {
+        "id": 49,
+        "name": "INV/2024/00005",
+        "invoice_date": "2024-08-12",
+        "state": "posted",
+        "sale_order": {
+            "id": 63,
+            "name": "S00063"
+        },
+        "payment_reference": "INV/2024/00005",
+        "amount_untaxed": 70.0,
+        "amount_tax": 10.5,
+        "amount_total": 80.5,
+        "amount_residual": 80.5,
+        "invoice_line": [
+            {
+                "product_id": 138,
+                "name": "Office Cleaning Service (SUB) - 1 Months\n07/30/2024 to 08/29/2024",
+                "quantity": 1.0,
+                "price_unit": 10.0,
+                "price_subtotal": 10.0
+            },
+            {
+                "product_id": 138,
+                "name": "Office Cleaning Service (SUB) - 1 Months\n07/30/2024 to 08/29/2024",
+                "quantity": 3.0,
+                "price_unit": 20.0,
+                "price_subtotal": 60.0
+            }
+        ]
+    }
+}
+                            </pre>
+                        </div>
+                    </div>
+                    <!-- 400 Error -->
+                    <div style="display: flex; align-items: center; margin-bottom: 10px;">
+                        <span style="font-weight: bold; padding: 5px 10px; color: white; border-radius: 3px; margin-right: 10px; background-color: #dc3545;">400</span>
+                        <span style="font-size: 14px; color: #333;">One of the given parameters is not valid</span>
+                    </div>
+
+                    <!-- 401 Error -->
+                    <div style="display: flex; align-items: center; margin-bottom: 10px;">
+                        <span style="font-weight: bold; padding: 5px 10px; color: white; border-radius: 3px; margin-right: 10px; background-color: #dc3545;">401</span>
+                        <span style="font-size: 14px; color: #333;">The user is not authorized. Authentication is required</span>
+                    </div>
+
+                    <!-- 403 Error -->
+                    <div style="display: flex; align-items: center; margin-bottom: 10px;">
+                        <span style="font-weight: bold; padding: 5px 10px; color: white; border-radius: 3px; margin-right: 10px; background-color: #dc3545;">403</span>
+                        <span style="font-size: 14px; color: #333;">You don't have the permission to access the requested resource</span>
+                    </div>
+
+                    <!-- 404 Error -->
+                    <div style="display: flex; align-items: center; margin-bottom: 10px;">
+                        <span style="font-weight: bold; padding: 5px 10px; color: white; border-radius: 3px; margin-right: 10px; background-color: #dc3545;">404</span>
+                        <span style="font-size: 14px; color: #333;">Requested resource not found</span>
+                    </div>
+                </div>
+            ]]>
+            </field>
+
+        </record>
+
+    </data>
+</odoo>

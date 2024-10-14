@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Form view for 'connection.api' model.  -->
+    <record id="connection_api_view_form" model="ir.ui.view">
+        <field name="name">connection.api.view.form</field>
+        <field name="model">connection.api</field>
+        <field name="arch" type="xml">
+            <form create="false" edit="false" delete="false">
+                <sheet>
+                    <group>
+                        <group string="Resource">
+                            <field name="model_id" string="Model"/>
+                        </group>
+                        <group string="Methods">
+                            <field name="is_get"/>
+                            <field name="is_post"/>
+                            <field name="is_put"/>
+                            <field name="is_delete"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="GET" name="get" invisible="not is_get">
+                            <field name="input_param_get"/>
+                        </page>
+                        <page string="POST" name="post" invisible="not is_post">
+                            <field name="input_param_post"/>
+                        </page>
+                        <page string="PUT" name="put" invisible="not is_put">
+                            <field name="input_param_modify"/>
+                        </page>
+                        <page string="DELETE" name="del" invisible="not is_delete">
+                            <field name="input_param_del"/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <!-- Tree view for 'connection.api' model.  -->
+    <record id="connection_api_view_tree" model="ir.ui.view">
+        <field name="name">connection.api.view.tree</field>
+        <field name="model">connection.api</field>
+        <field name="arch" type="xml">
+            <tree create="false" edit="false">
+                <field name="model_id" string="Model"/>
+                <field name="is_get"/>
+                <field name="is_post"/>
+                <field name="is_put"/>
+                <field name="is_delete"/>
+            </tree>
+        </field>
+    </record>
+    <!-- Action  for 'connection.api' model with Tree and form views.  -->
+    <record id="rest_api_root_action" model="ir.actions.act_window">
+        <field name="name">Rest API Records</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">connection.api</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create!
+            </p>
+        </field>
+    </record>
+    <!-- Menu items for the REST API.  -->
+    <menuitem id="rest_api_root"
+              name="Rest API"
+              sequence="10"
+              web_icon="agRESTApi,static/description/icon.png"/>
+    <menuitem id="rest_api_details_root"
+              name="Rest API"
+              parent="rest_api_root"
+              action="rest_api_root_action"
+              sequence="10"/>
+</odoo>
